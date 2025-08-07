@@ -2,16 +2,109 @@
 <html>
   <head>
     <title>Water Reminder Settings</title>
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="output.css" />
   </head>
 
-  <body>
-    <div class="w-[260px] bg-gray-300 p-4">
+  <body class="text-base">
+    <div class="w-[300px] border border-blue-900 px-5 py-3">
       <!-- Header -->
-      <header class="flex justify-between items-center">
-        <div>1</div>
-        <div>2</div>
+      <header class="flex justify-between items-center mb-3">
+        <!-- Back Button -->
+        <!-- <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+            />
+          </svg>
+        </button> -->
+
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="size-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+            />
+          </svg>
+        </button>
       </header>
+
+      <main>
+        <!-- Progress % Display -->
+        <div class="flex flex-col items-center">
+          <h1 class="mb-4 text-lg text-center">Refresh and Own the Day</h1>
+          <!-- Progress box -->
+          <div
+            class="rounded-xl border border-sky-100 bg-sky-50 p-6 w-[220px] shadow-md mb-6"
+          >
+            <h2 class="text-4xl font-bold tracking-wider mb-2">0.0%</h2>
+            <p class="mb-3 text-cyan-800 text-opacity-80 text-base">
+              Drink Up! 💧
+            </p>
+            <p
+              class="text-sm font-medium text-cyan-800 text-opacity-80 tracking-wider"
+            >
+              0.0 of 2.0L
+            </p>
+          </div>
+        </div>
+
+        <!-- Logging -->
+        <form>
+          <h3 class="text-lg text-center mb-2">Log your water intake:</h3>
+          <div class="relative flex items-center mb-4 peer">
+            <input
+              value="1000"
+              name="amount"
+              class="bg-sky-50 rounded-lg border-sky-100 border-2 p-2 pr-10 w-full text-lg text-sky-800 font-medium tracking-wider placeholder:-tracking-normal peer"
+              type="number"
+              required
+              placeholder="Enter amount in mL"
+            />
+            <div
+              class="absolute font-medium text-lg right-3 text-sky-800 hidden peer-valid:block"
+            >
+              mL
+            </div>
+          </div>
+
+          <!-- Log buttons -->
+          <button
+            type="submit"
+            class="rounded-lg transition-colors duration-200 bg-sky-300 text-white font-bold w-full py-3 disabled:cursor-not-allowed disabled:opacity-80 flex items-center justify-center gap-2 cursor-not-allowed peer-has-[:valid]:bg-sky-500 peer-has-[:valid]:hover:bg-sky-600 peer-has-[:valid]:cursor-pointer"
+          >
+            Log Drink
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13"
+              />
+            </svg>
+          </button>
+        </form>
+      </main>
 
       <!-- Main Settings View -->
       <div id="mainView">
