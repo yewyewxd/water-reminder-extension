@@ -18,6 +18,5 @@ body {
   background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%232563eb" fill-opacity="1" d="M0,224L60,197.3C120,171,240,117,360,96C480,75,600,85,720,112C840,139,960,181,1080,186.7C1200,192,1320,160,1380,144L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"/></svg>')
     no-repeat bottom center;
   background-size: cover;
-  transform: rotate(180deg); /* flip the wave vertically */
-  z-index: -1;
+  transform: rotate(180deg);
 }

@@ -7,7 +7,7 @@
   </head>
 
   <body class="text-base">
-    <div class="w-[300px] border border-blue-900 px-5 py-3">
+    <div class="w-[300px] border border-blue-900 p-6 pt-4 bg-primary-dark">
       <!-- Header -->
       <header class="flex justify-between items-center mb-3">
         <!-- Back Button -->
@@ -28,19 +28,32 @@
           </svg>
         </button> -->
 
-        <button>
+        <!-- Settings button -->
+        <button class="p-1 hover:text-primary-light duration-200">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="none"
             viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="size-4"
+            fill="currentColor"
+            class="size-5"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+              d="M18.75 12.75h1.5a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM12 6a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 6ZM12 18a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 18ZM3.75 6.75h1.5a.75.75 0 1 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM5.25 18.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 0 1.5ZM3 12a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 3 12ZM9 3.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM12.75 12a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM9 15.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
+            />
+          </svg>
+        </button>
+
+        <!-- Notification button -->
+        <button class="p-1 hover:text-primary-light duration-200">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-5"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z"
+              clip-rule="evenodd"
             />
           </svg>
         </button>
@@ -49,37 +62,46 @@
       <main>
         <!-- Progress % Display -->
         <div class="flex flex-col items-center">
-          <h1 class="mb-4 text-lg text-center">Refresh and Own the Day</h1>
-          <!-- Progress box -->
+          <h1 class="mb-6 text-3xl text-center text-primary-light font-bold">
+            Water Tracker
+          </h1>
+          <!-- Progress circle -->
           <div
-            class="rounded-xl border border-sky-100 bg-sky-50 p-6 w-[220px] shadow-md mb-6"
+            class="w-[200px] h-[200px] rounded-full mb-6 bg-black text-white flex justify-center items-end overflow-hidden relative"
           >
-            <h2 class="text-4xl font-bold tracking-wider mb-2">0.0%</h2>
-            <p class="mb-3 text-cyan-800 text-opacity-80 text-base">
-              Drink Up! 💧
-            </p>
-            <p
-              class="text-sm font-medium text-cyan-800 text-opacity-80 tracking-wider"
+            <div
+              class="absolute bg-primary-normal h-full w-full transition-transform duration-200 translate-y-[50%] wavy"
+            ></div>
+
+            <div
+              class="text-center h-full w-full flex flex-col justify-center items-center z-10"
             >
-              0.0 of 2.0L
-            </p>
+              <h2
+                class="text-4xl font-bold tracking-wider mb-3 text-primary text-white"
+              >
+                100.0%
+              </h2>
+              <p class="text-xs font-medium text-opacity-80 tracking-wider">
+                1500 / 2000 mL
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Logging -->
         <form>
-          <h3 class="text-lg text-center mb-2">Log your water intake:</h3>
+          <h3 class="text-center mb-3 font-medium">Log your water intake:</h3>
           <div class="relative flex items-center mb-4 peer">
             <input
               value="1000"
               name="amount"
-              class="bg-sky-50 rounded-lg border-sky-100 border-2 p-2 pr-10 w-full text-lg text-sky-800 font-medium tracking-wider placeholder:-tracking-normal peer"
+              class="bg-gray-600 rounded-lg border-primary-normal border-2 pl-3 py-2 pr-10 w-full text-lg font-medium tracking-wider placeholder:-tracking-normal peer placeholder:text-base"
               type="number"
               required
               placeholder="Enter amount in mL"
             />
             <div
-              class="absolute font-medium text-lg right-3 text-sky-800 hidden peer-valid:block"
+              class="absolute font-medium text-lg right-3 hidden peer-valid:block"
             >
               mL
             </div>
@@ -88,7 +110,7 @@
           <!-- Log buttons -->
           <button
             type="submit"
-            class="rounded-lg transition-colors duration-200 bg-sky-300 text-white font-bold w-full py-3 disabled:cursor-not-allowed disabled:opacity-80 flex items-center justify-center gap-2 cursor-not-allowed peer-has-[:valid]:bg-sky-500 peer-has-[:valid]:hover:bg-sky-600 peer-has-[:valid]:cursor-pointer"
+            class="rounded-lg duration-200 bg-primary-normal opacity-60 text-white font-bold w-full py-3 flex items-center justify-center gap-2 cursor-not-allowed peer-has-[:valid]:opacity-100 peer-has-[:valid]:hover:opacity-80 peer-has-[:valid]:cursor-pointer"
           >
             Log Drink
             <svg
@@ -107,7 +129,7 @@
       </main>
 
       <!-- Main Settings View -->
-      <div id="mainView">
+      <!-- <div id="mainView">
         <label
           >Start Time:
           <input type="time" id="startTime" />
@@ -120,7 +142,7 @@
         <br />
         <button id="saveBtn">Save</button>
         <p id="status"></p>
-      </div>
+      </div> -->
 
       <!-- Notification Settings View -->
       <div id="notifView" class="hidden">
