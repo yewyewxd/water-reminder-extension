@@ -2,57 +2,43 @@
 <html>
   <head>
     <title>Water Reminder Settings</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="output.css" />
   </head>
 
   <body>
-    <!-- Header -->
-    <div class="header">
-      <button id="backBtn" class="hidden">←</button>
-      <h2>Water Reminder</h2>
-      <button id="notifBtn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="black"
-          class="size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
-          />
-        </svg>
-      </button>
-    </div>
+    <div class="w-[260px] bg-gray-300 p-4">
+      <!-- Header -->
+      <header class="flex justify-between items-center">
+        <div>1</div>
+        <div>2</div>
+      </header>
 
-    <!-- Main Settings View -->
-    <div id="mainView">
-      <label
-        >Start Time:
-        <input type="time" id="startTime" />
-      </label>
-      <br />
-      <label
-        >End Time:
-        <input type="time" id="endTime" />
-      </label>
-      <br />
-      <button id="saveBtn">Save</button>
-      <p id="status"></p>
-    </div>
+      <!-- Main Settings View -->
+      <div id="mainView">
+        <label
+          >Start Time:
+          <input type="time" id="startTime" />
+        </label>
+        <br />
+        <label
+          >End Time:
+          <input type="time" id="endTime" />
+        </label>
+        <br />
+        <button id="saveBtn">Save</button>
+        <p id="status"></p>
+      </div>
 
-    <!-- Notification Settings View -->
-    <div id="notifView" class="hidden">
-      <p>
-        You’ll receive a notification every 10 minutes during your scheduled
-        time.
-      </p>
-      <p>Make sure Chrome allows notifications.</p>
-    </div>
+      <!-- Notification Settings View -->
+      <div id="notifView" class="hidden">
+        <p>
+          You’ll receive a notification every 10 minutes during your scheduled
+          time.
+        </p>
+        <p>Make sure Chrome allows notifications.</p>
+      </div>
 
-    <script src="popup.js"></script>
+      <script src="popup.js"></script>
+    </div>
   </body>
 </html>
