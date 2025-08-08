@@ -71,36 +71,39 @@
           </h1>
           <!-- Progress circle -->
           <div
-            class="w-[200px] h-[200px] rounded-full mb-6 text-white flex justify-center items-end overflow-hidden relative border-2 border-white"
+            id="water-log-progress-container"
+            class="w-[200px] h-[200px] rounded-full mb-6 text-white flex justify-center items-end overflow-hidden relative border-2 bg-primary-dark border-white duration-200"
+            style="transform: scale(1)"
           >
             <div
-              class="absolute bg-primary-normal h-full w-full transition-transform duration-200 translate-y-[50%] wavy"
-            >
-              <!-- todo: adjust % (dynamic) -->
-            </div>
+              id="water-log-progress"
+              class="absolute bg-primary-normal h-full w-full transition-transform duration-200 wavy"
+              style="transform: translateY(100%)"
+            ></div>
 
             <div
               class="text-white text-center h-full w-full flex flex-col justify-center items-center z-10"
             >
               <h2
+                id="water-log-percentage"
                 class="text-4xl font-bold tracking-wider mb-3 text-primary opacity-95"
               >
-                <!-- todo: adjust % (dynamic) -->
-                100.0%
+                0.0%
               </h2>
               <p class="text-xs font-medium text-opacity-80 tracking-wider">
-                <!-- todo: adjust % (dynamic) -->
-                1500 / 2000 mL
+                <!-- todo: use saved goal -->
+                <span id="water-log-total">0</span> / 3000 mL
               </p>
             </div>
           </div>
         </div>
 
         <!-- Logging -->
-        <form>
+        <form id="water-log-form">
           <h3 class="text-center mb-3 font-medium">Log your water intake:</h3>
           <div class="relative flex items-center mb-4 peer">
             <input
+              id="water-log-input"
               value="1000"
               name="amount"
               class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full text-lg font-medium tracking-wider placeholder:-tracking-normal peer placeholder:text-base outline-none invalid:text-pink-500 border-2 border-primary-dark valid:focus:border-primary-light invalid:border-pink-500"

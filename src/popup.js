@@ -1,17 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   // temporary
-  document.getElementById('main-view').classList.add('hidden')
-  document.getElementById('notification-view').classList.remove('hidden')
+  // document.getElementById('main-view').classList.add('hidden')
+  // document.getElementById('notification-view').classList.remove('hidden')
 
   //   const startTimeInput = document.getElementById('startTime')
   //   const endTimeInput = document.getElementById('endTime')
   //   const saveBtn = document.getElementById('saveBtn')
   //   const status = document.getElementById('status')
 
-  //   const mainView = document.getElementById('mainView')
   //   const notifView = document.getElementById('notifView')
-  const notificationBtn = document.getElementById('notification-button')
-  const backBtn = document.getElementById('back-button')
 
   //   // Load saved settings
   //   chrome.storage.sync.get(['startHour', 'endHour'], (result) => {
@@ -34,15 +31,46 @@ document.addEventListener('DOMContentLoaded', () => {
   //     })
   //   })
 
-  // Switch to Notification View
+  // Switch page logic
+  const notificationBtn = document.getElementById('notification-button')
+  const backBtn = document.getElementById('back-button')
+  // -- to Notification View
   notificationBtn.addEventListener('click', () => {
     document.getElementById('main-view').classList.add('hidden')
     document.getElementById('notification-view').classList.remove('hidden')
   })
-
-  // Back to Main View
+  // -- to Main View
   backBtn.addEventListener('click', () => {
     document.getElementById('notification-view').classList.add('hidden')
     document.getElementById('main-view').classList.remove('hidden')
+  })
+
+  // Water logging logic
+  const waterLogForm = document.getElementById('water-log-form')
+  const waterLogInput = document.getElementById('water-log-input')
+  const waterLogTotal = document.getElementById('water-log-total')
+  const waterLogPercent = document.getElementById('water-log-percentage')
+  const waterLogProgress = document.getElementById('water-log-progress')
+  const progressContainer = document.getElementById(
+    'water-log-progress-container'
+  )
+  waterLogForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const currentTotal = +waterLogTotal.innerText
+    const newTotal = currentTotal + +waterLogInput.value
+    waterLogTotal.innerText = newTotal
+    // todo: save WATER_GOAL
+    const GOAL = 3000
+    const newPercentage = (newTotal / GOAL) * 100 // cap at 100
+    waterLogPercent.innerText = newPercentage.toFixed(1) + '%'
+    const waterProgressTranslateY = Math.round(100 - newPercentage)
+    if (currentTotal < GOAL) {
+      waterLogProgress.style.transform = `translateY(${waterProgressTranslateY}%)`
+    }
+    // -- bounce animation
+    progressContainer.style.transform = 'scale(1.1)'
+    setTimeout(() => {
+      progressContainer.style.transform = 'scale(1)'
+    }, 200)
   })
 })
