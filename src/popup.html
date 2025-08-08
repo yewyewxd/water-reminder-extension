@@ -166,19 +166,16 @@
           Notifications
         </h1>
 
-        <form>
+        <form id="notification-form">
           <!-- Remind me every -->
           <div>
             <h3 class="mb-3 font-medium">Remind me every (min):</h3>
-            <div class="relative flex items-center mb-4 peer">
+            <div class="relative flex items-center mb-4">
               <!-- Input: reminder interval -->
               <input
-                value="10"
+                id="notification-interval-input"
                 name="interval"
                 class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full tracking-wider placeholder:-tracking-normal peer placeholder:text-base outline-none invalid:text-pink-500 border-2 border-primary-dark valid:focus:border-primary-light invalid:border-pink-500"
-                type="number"
-                min="1"
-                required
                 placeholder="Enter value in minutes"
               />
               <div class="absolute right-3 hidden peer-valid:block">min</div>
@@ -192,16 +189,17 @@
             <div
               class="flex flex-col mb-4 px-3 pt-[10px] pb-[6px] bg-gray-600 rounded-lg border-2 border-primary-dark focus-within:border-primary-light"
             >
-              <label for="startTime" class="text-xs leading-tight"
+              <label
+                for="notification-start-input"
+                class="text-xs leading-tight"
                 >Start Time</label
               >
               <input
                 value="06:00"
-                id="startTime"
+                id="notification-start-input"
                 name="startTime"
                 class="bg-gray-600 w-full placeholder:-tracking-normal placeholder:text-base outline-none leading-tight"
                 type="time"
-                required
               />
             </div>
 
@@ -209,22 +207,30 @@
             <div
               class="flex flex-col mb-4 px-3 pt-[10px] pb-[6px] bg-gray-600 rounded-lg border-2 border-primary-dark focus-within:border-primary-light"
             >
-              <label for="endTime" class="text-xs leading-tight"
+              <label for="notification-end-input" class="text-xs leading-tight"
                 >End Time</label
               >
               <input
                 value="18:00"
-                id="endTime"
+                id="notification-end-input"
                 name="endTime"
                 class="bg-gray-600 w-full placeholder:-tracking-normal placeholder:text-base outline-none leading-tight"
                 type="time"
-                required
               />
             </div>
           </div>
+
+          <!-- Save notification setting button -->
+          <button
+            id="notification-save-button"
+            type="submit"
+            class="rounded-lg duration-200 bg-primary-normal text-white font-bold w-full py-3 hover:opacity-80"
+          >
+            Save
+          </button>
         </form>
 
-        <p class="text-gray-400 text-xs pt-1">
+        <p class="text-gray-400 text-xs mt-3 text-center">
           Make sure Chrome allows notifications.
         </p>
       </div>

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // temporary
-  // document.getElementById('main-view').classList.add('hidden')
-  // document.getElementById('notification-view').classList.remove('hidden')
+  document.getElementById('main-view').classList.add('hidden')
+  document.getElementById('notification-view').classList.remove('hidden')
 
   //   const startTimeInput = document.getElementById('startTime')
   //   const endTimeInput = document.getElementById('endTime')
@@ -56,8 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
   )
   waterLogForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    const inputValue = +waterLogInput.value
+    // -- validation
+    if (isNaN(inputValue) || inputValue <= 0) return
     const currentTotal = +waterLogTotal.innerText
-    const newTotal = currentTotal + +waterLogInput.value
+    const newTotal = currentTotal + inputValue
     waterLogTotal.innerText = newTotal
     // todo: save WATER_GOAL
     const GOAL = 3000
@@ -72,5 +75,38 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       progressContainer.style.transform = 'scale(1)'
     }, 200)
+  })
+
+  // Notification setting logic
+  const notificationForm = document.getElementById('notification-form')
+  const intervalInput = document.getElementById('notification-interval-input')
+  const notificationSaveBtn = document.getElementById(
+    'notification-save-button'
+  )
+
+  // const notificationStart = document.getElementById('notification-start-input')
+  // const notificationEnd = document.getElementById('notification-end-input')
+
+  // -- set default interval
+  chrome.storage.sync.get(['notificationInterval'], (result) => {
+    const interval = result.notificationInterval ?? 10
+    intervalInput.value = interval
+  })
+  // -- update interval
+  notificationForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const intervalValue = +intervalInput.value
+    // -- validation
+    if (isNaN(intervalValue) || intervalValue <= 0) return
+    chrome.runtime.sendMessage({
+      action: 'updateDrinkWaterReminder',
+      interval: intervalValue,
+    })
+
+    // -- "saved" UI feedback
+    notificationSaveBtn.innerText = 'Saved!'
+    setTimeout(() => {
+      notificationSaveBtn.innerText = 'Save'
+    }, 1000)
   })
 })
