@@ -7,6 +7,7 @@ function createDrinkWaterAlarm(interval) {
     chrome.alarms.create('drinkWaterReminder', {
       periodInMinutes: interval,
     })
+    sendDrinkWaterNotification()
   } else {
     // delete notification
     chrome.alarms.clear('drinkWaterReminder')
