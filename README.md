@@ -1,9 +1,6 @@
-only upload these
+### To build
 
-drink-water-reminder/
-├── manifest.json
-├── popup.html  
-├── output.css  
-├── background.js
-├── popup.js
-└── icons/
+1. run `npm install` or `npm i`
+2. run `npm run buildcss`
+3. zip everything in `src/`
+4. upload zipped to Chrome Extension Store
