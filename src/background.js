@@ -1,6 +1,3 @@
-const DEFAULT_START_HOUR = 6 // 6 AM
-const DEFAULT_END_HOUR = 18 // 6 PM
-
 function createDrinkWaterAlarm(interval) {
   if (interval) {
     // schedule notifications
@@ -19,9 +16,9 @@ function sendDrinkWaterNotification() {
   const now = new Date()
   const currentHour = now.getHours()
 
-  chrome.storage.sync.get(['startHour', 'endHour'], (result) => {
-    const start = result.startHour ?? DEFAULT_START_HOUR
-    const end = result.endHour ?? DEFAULT_END_HOUR
+  chrome.storage.sync.get(['startTime', 'endTime'], (result) => {
+    const start = result.startTime
+    const end = result.endTime
 
     if (currentHour >= start && currentHour < end) {
       chrome.notifications.create({
@@ -55,12 +52,13 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 // Listen for updates from popup.js
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === 'updateDrinkWaterReminder') {
-    const { interval, startHour, endHour } = message
-    const storage = { notificationInterval: interval }
-    // chrome.storage.sync.remove()
-    if (startHour) storage.startHour = startHour
-    if (endHour) storage.endHour = endHour
+    const { interval, startTime, endTime } = message
+    console.log({ startTime, endTime })
     createDrinkWaterAlarm(interval)
-    chrome.storage.sync.set(storage)
+    chrome.storage.sync.set({
+      notificationInterval: interval,
+      startTime,
+      endTime,
+    })
   }
 })

@@ -58,13 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
   )
 
   chrome.storage.sync.get(
-    ['startHour', 'endHour', 'notificationInterval'],
+    ['startTime', 'endTime', 'notificationInterval'],
     (result) => {
       // -- set default start & end time
-      const startHour = result.startHour ?? 6
-      const endHour = result.endHour ?? 18
-      notificationStart.value = String(startHour).padStart(2, '0') + ':00'
-      notificationEnd.value = String(endHour).padStart(2, '0') + ':00'
+      const startTime = result.startTime ?? 6
+      const endTime = result.endTime ?? 18
+      notificationStart.value = String(startTime).padStart(2, '0') + ':00'
+      notificationEnd.value = String(endTime).padStart(2, '0') + ':00'
 
       // -- set default interval
       const interval = result.notificationInterval
@@ -80,18 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault()
     const intervalValue = +intervalInput.value
     const isInvalidInterval = isNaN(intervalValue) || intervalValue <= 0
-    const startValue = notificationStart.value
-    const endValue = notificationEnd.value
+
+    // -- validate: start & end hours
+    if (!notificationStart.value) notificationStart.value = '00:00'
+    if (!notificationEnd.value) notificationEnd.value = '23:59'
 
     const chromeMessage = {
       action: 'updateDrinkWaterReminder',
       interval: isInvalidInterval ? null : intervalValue,
-    }
-
-    // -- update start & end time
-    if (startValue && endValue) {
-      chromeMessage.startHour = parseInt(startValue.split(':')[0], 10)
-      chromeMessage.endHour = parseInt(endValue.split(':')[0], 10)
+      startTime: notificationStart.value,
+      endTime: notificationEnd.value,
     }
 
     // -- save
