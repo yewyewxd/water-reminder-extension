@@ -4,8 +4,8 @@
   "description": "",
   "main": "background.js",
   "scripts": {
-    "buildcss:watch": "npx tailwindcss -i ./input.css -o ./output.css --watch",
-    "buildcss": "npx tailwindcss -i ./input.css -o ./output.css"
+    "buildcss:watch": "npx tailwindcss -i ./input.css -o ./src/tailwind.css --watch",
+    "buildcss": "npx tailwindcss -i ./input.css -o ./src/tailwind.css"
   },
   "keywords": [],
   "author": "",
