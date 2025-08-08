@@ -9,9 +9,11 @@
   <body class="text-base">
     <div class="w-[300px] border border-blue-900 p-6 pt-4 bg-primary-dark">
       <!-- Header -->
-      <header class="flex justify-between items-center mb-3">
-        <!-- Back Button -->
-        <!-- <button>
+
+      <main id="main-view">
+        <header class="flex justify-between items-center mb-3">
+          <!-- Back Button -->
+          <!-- <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -28,38 +30,40 @@
           </svg>
         </button> -->
 
-        <!-- Settings button -->
-        <button class="p-1 hover:text-primary-light duration-200">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-5"
-          >
-            <path
-              d="M18.75 12.75h1.5a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM12 6a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 6ZM12 18a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 18ZM3.75 6.75h1.5a.75.75 0 1 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM5.25 18.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 0 1.5ZM3 12a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 3 12ZM9 3.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM12.75 12a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM9 15.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
-            />
-          </svg>
-        </button>
+          <!-- Settings button -->
+          <button class="p-1 hover:text-primary-light duration-200">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-5"
+            >
+              <path
+                d="M18.75 12.75h1.5a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM12 6a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 6ZM12 18a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 18ZM3.75 6.75h1.5a.75.75 0 1 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM5.25 18.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 0 1.5ZM3 12a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 3 12ZM9 3.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM12.75 12a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM9 15.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
+              />
+            </svg>
+          </button>
 
-        <!-- Notification button -->
-        <button class="p-1 hover:text-primary-light duration-200">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-5"
+          <!-- Notification button -->
+          <button
+            id="notification-button"
+            class="p-1 hover:text-primary-light duration-200"
           >
-            <path
-              fill-rule="evenodd"
-              d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
-      </header>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-5"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </header>
 
-      <main>
         <!-- Progress % Display -->
         <div class="flex flex-col items-center">
           <h1 class="mb-6 text-3xl text-center text-primary-light font-bold">
@@ -99,10 +103,9 @@
             <input
               value="1000"
               name="amount"
-              class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full text-lg font-medium tracking-wider placeholder:-tracking-normal peer placeholder:text-base"
+              class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full text-lg font-medium tracking-wider placeholder:-tracking-normal peer placeholder:text-base outline-none invalid:text-pink-500 border-2 border-primary-dark valid:focus:border-primary-light invalid:border-pink-500"
               type="number"
               min="1"
-              max="10000"
               required
               placeholder="Enter amount in mL"
             />
@@ -134,29 +137,93 @@
         </form>
       </main>
 
-      <!-- Main Settings View -->
-      <!-- <div id="mainView">
-        <label
-          >Start Time:
-          <input type="time" id="startTime" />
-        </label>
-        <br />
-        <label
-          >End Time:
-          <input type="time" id="endTime" />
-        </label>
-        <br />
-        <button id="saveBtn">Save</button>
-        <p id="status"></p>
-      </div> -->
-
       <!-- Notification Settings View -->
-      <div id="notifView" class="hidden">
-        <p>
-          You’ll receive a notification every 10 minutes during your scheduled
-          time.
+      <div id="notification-view" class="hidden">
+        <header class="flex justify-between items-center mb-3">
+          <!-- Back Button -->
+          <button id="back-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </button>
+        </header>
+
+        <h1 class="mb-6 text-3xl text-center text-primary-light font-bold">
+          Notifications
+        </h1>
+
+        <form>
+          <!-- Remind me every -->
+          <div>
+            <h3 class="mb-3 font-medium">Remind me every (min):</h3>
+            <div class="relative flex items-center mb-4 peer">
+              <!-- Input: reminder interval -->
+              <input
+                value="10"
+                name="interval"
+                class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full tracking-wider placeholder:-tracking-normal peer placeholder:text-base outline-none invalid:text-pink-500 border-2 border-primary-dark valid:focus:border-primary-light invalid:border-pink-500"
+                type="number"
+                min="1"
+                required
+                placeholder="Enter value in minutes"
+              />
+              <div class="absolute right-3 hidden peer-valid:block">min</div>
+            </div>
+          </div>
+
+          <!-- Active hours -->
+          <div>
+            <h3 class="mb-3 font-medium">Active hours:</h3>
+            <!-- Input: start time -->
+            <div
+              class="flex flex-col mb-4 px-3 pt-[10px] pb-[6px] bg-gray-600 rounded-lg border-2 border-primary-dark focus-within:border-primary-light"
+            >
+              <label for="startTime" class="text-xs leading-tight"
+                >Start Time</label
+              >
+              <input
+                value="06:00"
+                id="startTime"
+                name="startTime"
+                class="bg-gray-600 w-full placeholder:-tracking-normal placeholder:text-base outline-none leading-tight"
+                type="time"
+                required
+              />
+            </div>
+
+            <!-- Input: end time -->
+            <div
+              class="flex flex-col mb-4 px-3 pt-[10px] pb-[6px] bg-gray-600 rounded-lg border-2 border-primary-dark focus-within:border-primary-light"
+            >
+              <label for="endTime" class="text-xs leading-tight"
+                >End Time</label
+              >
+              <input
+                value="18:00"
+                id="endTime"
+                name="endTime"
+                class="bg-gray-600 w-full placeholder:-tracking-normal placeholder:text-base outline-none leading-tight"
+                type="time"
+                required
+              />
+            </div>
+          </div>
+        </form>
+
+        <p class="text-gray-400 text-xs pt-1">
+          Make sure Chrome allows notifications.
         </p>
-        <p>Make sure Chrome allows notifications.</p>
       </div>
 
       <script src="./popup.js"></script>
