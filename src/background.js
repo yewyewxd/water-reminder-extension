@@ -1,15 +1,19 @@
 const DEFAULT_START_HOUR = 6 // 6 AM
 const DEFAULT_END_HOUR = 18 // 6 PM
-const DEFAULT_INTERVAL = 10 // minutes
 
-// Function to set alarm with the given interval
 function createDrinkWaterAlarm(interval) {
-  chrome.alarms.create('drinkWaterReminder', {
-    periodInMinutes: interval,
-  })
+  if (interval) {
+    // schedule notifications
+    chrome.alarms.create('drinkWaterReminder', {
+      periodInMinutes: interval,
+    })
+  } else {
+    // delete notification
+    chrome.alarms.clear('drinkWaterReminder')
+  }
 }
 
-// Function to send a notification
+// Send a notification right away
 function sendDrinkWaterNotification() {
   const now = new Date()
   const currentHour = now.getHours()
@@ -31,23 +35,16 @@ function sendDrinkWaterNotification() {
 }
 
 // Handle extension installed or browser restarted
-chrome.runtime.onStartup.addListener(() => {
+chrome.runtime.onStartup.addListener(initNotification)
+chrome.runtime.onInstalled.addListener(initNotification)
+function initNotification() {
   chrome.storage.sync.get(['notificationInterval'], (result) => {
-    const interval = result.notificationInterval ?? DEFAULT_INTERVAL
-    createDrinkWaterAlarm(interval)
-    sendDrinkWaterNotification() // Immediate notification on restart
+    const interval = result.notificationInterval
+    if (interval) createDrinkWaterAlarm(interval)
   })
-})
+}
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.get(['notificationInterval'], (result) => {
-    const interval = result.notificationInterval ?? DEFAULT_INTERVAL
-    createDrinkWaterAlarm(interval)
-    sendDrinkWaterNotification() // Immediate notification on install
-  })
-})
-
-// Handle alarm triggers
+// Handle scheduled alarm triggers
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === 'drinkWaterReminder') {
     sendDrinkWaterNotification()
@@ -57,9 +54,12 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 // Listen for updates from popup.js
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === 'updateDrinkWaterReminder') {
-    const newInterval = message.interval
-    createDrinkWaterAlarm(newInterval)
-    sendDrinkWaterNotification() // Immediate notification after change
-    chrome.storage.sync.set({ notificationInterval: newInterval }) // Persist
+    const { interval, startHour, endHour } = message
+    const storage = { notificationInterval: interval }
+    // chrome.storage.sync.remove()
+    if (startHour) storage.startHour = startHour
+    if (endHour) storage.endHour = endHour
+    createDrinkWaterAlarm(interval)
+    chrome.storage.sync.set(storage)
   }
 })

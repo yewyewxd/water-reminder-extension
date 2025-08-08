@@ -168,11 +168,12 @@
 
         <form id="notification-form">
           <!-- Remind me every -->
-          <div>
+          <div class="mb-4">
             <h3 class="mb-3 font-medium">Remind me every (min):</h3>
-            <div class="relative flex items-center mb-4">
+            <div class="relative flex items-center">
               <!-- Input: reminder interval -->
               <input
+                min="0"
                 id="notification-interval-input"
                 name="interval"
                 class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full tracking-wider placeholder:-tracking-normal peer placeholder:text-base outline-none invalid:text-pink-500 border-2 border-primary-dark valid:focus:border-primary-light invalid:border-pink-500"
@@ -180,6 +181,11 @@
               />
               <div class="absolute right-3 hidden peer-valid:block">min</div>
             </div>
+            <span
+              id="notification-active-indicator"
+              class="text-gray-400 text-xs"
+              >Notification is turned off.</span
+            >
           </div>
 
           <!-- Active hours -->
