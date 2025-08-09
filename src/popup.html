@@ -10,28 +10,14 @@
     <div class="w-[300px] border border-blue-900 p-6 pt-4 bg-primary-dark">
       <!-- Header -->
 
+      <!-- Main View -->
       <main id="main-view">
         <header class="flex justify-between items-center mb-3">
-          <!-- Back Button -->
-          <!-- <button>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2.5"
-            stroke="currentColor"
-            class="size-4"
+          <!-- Goal setting button -->
+          <button
+            id="goal-setting-button"
+            class="p-1 hover:text-primary-light duration-200"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-            />
-          </svg>
-        </button> -->
-
-          <!-- Settings button -->
-          <button class="p-1 hover:text-primary-light duration-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -144,7 +130,10 @@
       <div id="notification-view" class="hidden">
         <header class="flex justify-between items-center mb-3">
           <!-- Back Button -->
-          <button id="back-button">
+          <button
+            id="notification-view-back-button"
+            class="p-1 hover:text-primary-light duration-200"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -178,6 +167,7 @@
                 name="interval"
                 class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full tracking-wider placeholder:-tracking-normal peer placeholder:text-base outline-none invalid:text-pink-500 border-2 border-primary-dark valid:focus:border-primary-light invalid:border-pink-500"
                 placeholder="Enter value in minutes"
+                type="number"
               />
               <div class="absolute right-3 hidden peer-valid:block">min</div>
             </div>
@@ -239,6 +229,84 @@
         <p class="text-gray-400 text-xs mt-3 text-center">
           Make sure Chrome allows notifications.
         </p>
+      </div>
+
+      <!-- Goal Setting View -->
+      <div id="goal-view" class="hidden">
+        <header class="flex justify-between items-center mb-3">
+          <!-- Back Button -->
+          <button
+            id="goal-view-back-button"
+            class="p-1 hover:text-primary-light duration-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </button>
+        </header>
+
+        <h1 class="mb-6 text-3xl text-center text-primary-light font-bold">
+          Goals
+        </h1>
+
+        <form id="goal-form">
+          <!-- Daily water goal -->
+          <div class="mb-4">
+            <h3 class="mb-3 font-medium">Daily water goal (mL):</h3>
+            <div class="relative flex items-center">
+              <!-- Input: daily water goal -->
+              <input
+                id="daily-water-goal-input"
+                value="3000"
+                min="0"
+                name="daily-water-goal"
+                type="number"
+                class="bg-gray-600 rounded-lg pl-3 py-2 pr-10 w-full tracking-wider placeholder:-tracking-normal peer placeholder:text-base outline-none invalid:text-pink-500 border-2 border-primary-dark valid:focus:border-primary-light invalid:border-pink-500"
+                placeholder="Enter value in mL"
+                required
+              />
+              <div class="absolute right-3 hidden peer-valid:block">mL</div>
+            </div>
+          </div>
+
+          <!-- Save goal setting button -->
+          <button
+            id="goal-save-button"
+            type="submit"
+            class="rounded-lg duration-200 bg-primary-normal text-white font-bold w-full py-3 hover:opacity-80"
+          >
+            Save
+          </button>
+        </form>
+
+        <hr class="my-5 border-gray-400" />
+
+        <!-- Reset today's progress -->
+        <div class="mb-4">
+          <h3 class="font-medium text-red-400 mb-2 leading-none">
+            Danger Zone
+          </h3>
+          <p class="text-sm mb-3">Reset today's water progress.</p>
+
+          <button
+            id="progress-reset-button"
+            type="button"
+            class="rounded-lg duration-200 border-2 border-red-400 text-red-400 font-bold w-full py-3 hover:opacity-80"
+          >
+            Reset
+          </button>
+        </div>
       </div>
 
       <script src="./popup.js"></script>
