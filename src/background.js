@@ -56,7 +56,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 })
 
-// Listen for updates from popup.js
+// Listen for updates from ./scripts/main.js
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === 'updateDrinkWaterReminder') {
     const { interval, startTime, endTime } = message
