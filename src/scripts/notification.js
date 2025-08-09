@@ -1,4 +1,5 @@
 export default function () {
+  // Notification setting logic
   const notificationForm = document.getElementById('notification-form')
   const intervalInput = document.getElementById('notification-interval-input')
   const notificationSaveBtn = document.getElementById(
@@ -13,21 +14,26 @@ export default function () {
   chrome.storage.sync.get(
     ['startTime', 'endTime', 'notificationInterval'],
     (result) => {
+      // -- set default start & end time
       notificationStart.value = result.startTime ?? '06:00'
       notificationEnd.value = result.endTime ?? '18:00'
 
-      if (result.notificationInterval) {
-        intervalInput.value = result.notificationInterval
+      // -- set default interval
+      const interval = result.notificationInterval
+      if (interval) {
+        intervalInput.value = interval
         notificationActiveText.classList.add('hidden')
       }
     }
   )
 
+  // -- SUBMIT: update interval and start & end time
   notificationForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const intervalValue = +intervalInput.value
     const isInvalidInterval = isNaN(intervalValue) || intervalValue <= 0
 
+    // -- validate: start & end hours
     if (!notificationStart.value) notificationStart.value = '00:00'
     if (!notificationEnd.value) notificationEnd.value = '23:59'
 
@@ -38,15 +44,16 @@ export default function () {
       endTime: notificationEnd.value,
     }
 
+    // -- save
     chrome.runtime.sendMessage(chromeMessage)
 
+    // -- "saved" UI feedback
     if (isInvalidInterval) {
       notificationActiveText.classList.remove('hidden')
       intervalInput.value = ''
     } else {
       notificationActiveText.classList.add('hidden')
     }
-
     notificationSaveBtn.innerText = 'Saved!'
     notificationSaveBtn.style.opacity = 0.8
     setTimeout(() => {
