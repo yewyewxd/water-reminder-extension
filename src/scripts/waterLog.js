@@ -18,7 +18,7 @@ export default function () {
   const streakText = document.getElementById('streak-text')
   const streakDayText = document.getElementById('streak-day-text')
 
-  // Helpers
+  // helpers
   function updateStreakText() {
     if (streak <= 0) {
       streakContainer.style.display = 'none'
@@ -51,7 +51,6 @@ export default function () {
     waterLogProgress.style.transform = `translateY(${translateY}%)`
   })
 
-  // todo: streak
   // -- SUBMIT: log water
   waterLogForm.onsubmit = function (e) {
     e.preventDefault()
