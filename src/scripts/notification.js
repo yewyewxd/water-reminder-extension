@@ -16,8 +16,8 @@ export default function () {
     ['startTime', 'endTime', 'notificationInterval'],
     (result) => {
       // -- set default start & end time
-      notificationStart.value = result.startTime ?? '06:00'
-      notificationEnd.value = result.endTime ?? '18:00'
+      notificationStart.value = result.startTime || '06:00'
+      notificationEnd.value = result.endTime || '18:00'
 
       // -- set default interval
       const interval = result.notificationInterval

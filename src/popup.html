@@ -34,7 +34,9 @@
             <div class="relative flex flex-col items-center group">
               <!-- Streak -->
               <div
+                id="streak-container"
                 class="flex items-center gap-1 text-yellow-600 relative group"
+                style="display: none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +48,7 @@
                     d="M11.983 1.907a.75.75 0 0 0-1.292-.657l-8.5 9.5A.75.75 0 0 0 2.75 12h6.572l-1.305 6.093a.75.75 0 0 0 1.292.657l8.5-9.5A.75.75 0 0 0 17.25 8h-6.572l1.305-6.093Z"
                   />
                 </svg>
-                <span class="text-sm font-bold">1</span>
+                <span id="streak-text" class="text-sm font-bold">1</span>
               </div>
 
               <!-- Streak tooltip -->
@@ -57,7 +59,7 @@
                 <div
                   class="relative rounded-md p-3 text-xs leading-none text-white whitespace-nowrap bg-black"
                 >
-                  3 days streak!
+                  <span id="streak-day-text">3 days</span> streak!
                 </div>
               </div>
             </div>

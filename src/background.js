@@ -17,8 +17,8 @@ function sendDrinkWaterNotification() {
   const currentMinutes = now.getHours() * 60 + now.getMinutes() // minutes since midnight
 
   chrome.storage.sync.get(['startTime', 'endTime'], (result) => {
-    const startTime = result.startTime ?? '06:00' // default 6:00 AM
-    const endTime = result.endTime ?? '18:00' // default 6:00 PM
+    const startTime = result.startTime || '06:00' // default 6:00 AM
+    const endTime = result.endTime || '18:00' // default 6:00 PM
 
     // Convert "HH:mm" to minutes since midnight
     const [startHour, startMin] = startTime.split(':')
