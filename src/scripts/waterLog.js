@@ -30,26 +30,28 @@ export default function () {
   }
 
   // -- GET: states
-  chrome.storage.sync.get(['dailyGoal', 'dailyTotal', 'streak'], (result) => {
-    const dailyTotal = result.dailyTotal || 0
-    const dailyGoal = result.dailyGoal || 3000
-    streak = result.streak || 0
+  chrome.storage.sync.get(
+    ['dailyGoal', 'dailyTotal', 'streak', 'defaultAmountToLog'],
+    (result) => {
+      const dailyTotal = result.dailyTotal || 0
+      const dailyGoal = result.dailyGoal || 3000
+      streak = result.streak || 0
 
-    // -- set default streak, water logged, goal
-    if (streak > 0) updateStreakText()
-    goalText.innerText = dailyGoal
-    goalInput.value = dailyGoal
+      // -- set default streak, water logged, goal
+      if (streak > 0) updateStreakText()
+      goalText.innerText = dailyGoal
+      goalInput.value = dailyGoal
+      waterLogTotal.innerText = dailyTotal
+      waterLogInput.value = result.defaultAmountToLog || 1000
 
-    // -- set default water progress
-    waterLogTotal.innerText = dailyTotal
-
-    // -- set default progress circle UI
-    const newPercentage = (dailyTotal / dailyGoal) * 100
-    waterLogPercent.innerText = newPercentage.toFixed(1) + '%'
-    // cap at 100
-    const translateY = Math.round(100 - Math.min(newPercentage, 100))
-    waterLogProgress.style.transform = `translateY(${translateY}%)`
-  })
+      // -- set default progress circle UI
+      const newPercentage = (dailyTotal / dailyGoal) * 100
+      waterLogPercent.innerText = newPercentage.toFixed(1) + '%'
+      // cap at 100
+      const translateY = Math.round(100 - Math.min(newPercentage, 100))
+      waterLogProgress.style.transform = `translateY(${translateY}%)`
+    }
+  )
 
   // -- SUBMIT: log water
   waterLogForm.onsubmit = function (e) {
@@ -62,8 +64,11 @@ export default function () {
     // -- update progress
     const prevWaterLogged = +waterLogTotal.innerText
     const newTotal = prevWaterLogged + waterLogged
-    chrome.storage.sync.set({ dailyTotal: newTotal })
     waterLogTotal.innerText = newTotal
+    chrome.storage.sync.set({
+      dailyTotal: newTotal,
+      defaultAmountToLog: waterLogged,
+    })
 
     // -- update progress circle UI
     const dailyGoal = +goalText.innerText
