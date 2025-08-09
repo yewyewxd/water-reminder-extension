@@ -1,10 +1,10 @@
 function createDrinkWaterAlarm(interval) {
   if (interval) {
     // schedule notifications
+    sendDrinkWaterNotification()
     chrome.alarms.create('drinkWaterReminder', {
       periodInMinutes: interval,
     })
-    sendDrinkWaterNotification()
   } else {
     // delete notification
     chrome.alarms.clear('drinkWaterReminder')
@@ -14,13 +14,20 @@ function createDrinkWaterAlarm(interval) {
 // Send a notification right away
 function sendDrinkWaterNotification() {
   const now = new Date()
-  const currentHour = now.getHours()
+  const currentMinutes = now.getHours() * 60 + now.getMinutes() // minutes since midnight
 
   chrome.storage.sync.get(['startTime', 'endTime'], (result) => {
-    const start = result.startTime
-    const end = result.endTime
+    const startTime = result.startTime ?? '06:00' // default 6:00 AM
+    const endTime = result.endTime ?? '18:00' // default 6:00 PM
 
-    if (currentHour >= start && currentHour < end) {
+    // Convert "HH:mm" to minutes since midnight
+    const [startHour, startMin] = startTime.split(':')
+    const [endHour, endMin] = endTime.split(':')
+
+    const startMinutes = +startHour * 60 + +startMin
+    const endMinutes = +endHour * 60 + +endMin
+
+    if (currentMinutes >= startMinutes && currentMinutes <= endMinutes) {
       chrome.notifications.create({
         type: 'basic',
         iconUrl: 'icons/icon128.png',
@@ -53,12 +60,13 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === 'updateDrinkWaterReminder') {
     const { interval, startTime, endTime } = message
-    console.log({ startTime, endTime })
-    createDrinkWaterAlarm(interval)
+    // -- update storage
     chrome.storage.sync.set({
       notificationInterval: interval,
       startTime,
       endTime,
     })
+    // -- new alarm state
+    createDrinkWaterAlarm(interval)
   }
 })

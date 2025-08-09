@@ -61,10 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ['startTime', 'endTime', 'notificationInterval'],
     (result) => {
       // -- set default start & end time
-      const startTime = result.startTime ?? 6
-      const endTime = result.endTime ?? 18
-      notificationStart.value = String(startTime).padStart(2, '0') + ':00'
-      notificationEnd.value = String(endTime).padStart(2, '0') + ':00'
+      const startTime = result.startTime ?? '06:00'
+      const endTime = result.endTime ?? '18:00'
+      notificationStart.value = startTime
+      notificationEnd.value = endTime
 
       // -- set default interval
       const interval = result.notificationInterval
