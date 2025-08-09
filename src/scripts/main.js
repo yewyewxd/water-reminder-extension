@@ -1,9 +1,9 @@
 import views from './views.js'
-import progress from './progress.js'
+import waterLog from './waterLog.js'
 import notification from './notification.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   views()
-  progress()
+  waterLog()
   notification()
 })
