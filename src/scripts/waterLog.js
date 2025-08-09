@@ -102,8 +102,20 @@ export default function () {
     }, 2000)
   }
 
-  // // -- CLICK: reset streak
+  // todo: cancel streak
+  // -- CLICK: reset today's progress
   progressResetBtn.onclick = function () {
-    console.log('ok')
+    chrome.storage.sync.set({ dailyTotal: 0 })
+    waterLogTotal.innerText = '0'
+    waterLogPercent.innerText = '0.0%'
+    waterLogProgress.style.transform = `translateY(100%)`
+
+    // -- "reset" UI feedback
+    progressResetBtn.innerText = 'Reset done!'
+    progressResetBtn.style.opacity = 0.8
+    setTimeout(() => {
+      progressResetBtn.innerText = 'Reset'
+      progressResetBtn.style.removeProperty('opacity')
+    }, 2000)
   }
 }
