@@ -11,6 +11,7 @@ export default function () {
     'notification-active-indicator'
   )
 
+  // -- GET: states
   chrome.storage.sync.get(
     ['startTime', 'endTime', 'notificationInterval'],
     (result) => {
@@ -28,7 +29,7 @@ export default function () {
   )
 
   // -- SUBMIT: update interval and start & end time
-  notificationForm.addEventListener('submit', (e) => {
+  notificationForm.onsubmit = function (e) {
     e.preventDefault()
     const intervalValue = +intervalInput.value
     const isInvalidInterval = isNaN(intervalValue) || intervalValue <= 0
@@ -60,5 +61,5 @@ export default function () {
       notificationSaveBtn.innerText = 'Save'
       notificationSaveBtn.style.removeProperty('opacity')
     }, 2000)
-  })
+  }
 }

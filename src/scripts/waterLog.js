@@ -11,6 +11,7 @@ export default function () {
   const goalText = document.getElementById('daily-water-goal')
   const goalInput = document.getElementById('daily-water-goal-input')
 
+  // -- GET: states
   chrome.storage.sync.get(['dailyGoal', 'dailyTotal'], (result) => {
     const dailyTotal = result.dailyTotal ?? 0
     const dailyGoal = result.dailyGoal ?? 3000
@@ -31,7 +32,7 @@ export default function () {
 
   // todo: streak
   // -- SUBMIT: log water
-  waterLogForm.addEventListener('submit', (e) => {
+  waterLogForm.onsubmit = function (e) {
     e.preventDefault()
     const waterLogged = +waterLogInput.value
 
@@ -58,14 +59,19 @@ export default function () {
     setTimeout(() => {
       progressContainer.style.removeProperty('transform')
     }, 200)
-  })
+  }
+
+  //
+  //
+  //
 
   // Goal setting logic
   const goalForm = document.getElementById('goal-form')
   const goalSaveBtn = document.getElementById('goal-save-button')
+  const progressResetBtn = document.getElementById('progress-reset-button')
 
   // -- SUBMIT: save daily goal
-  goalForm.addEventListener('submit', (e) => {
+  goalForm.onsubmit = function (e) {
     e.preventDefault()
     const newDailyGoal = +goalInput.value
 
@@ -94,5 +100,10 @@ export default function () {
       goalSaveBtn.innerText = 'Save'
       goalSaveBtn.style.removeProperty('opacity')
     }, 2000)
-  })
+  }
+
+  // // -- CLICK: reset streak
+  progressResetBtn.onclick = function () {
+    console.log('ok')
+  }
 }
