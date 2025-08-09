@@ -17,6 +17,13 @@ export default function () {
     mainView.classList.add('hidden')
     goalView.classList.remove('hidden')
   }
+  const progressContainer = document.getElementById(
+    'water-log-progress-container'
+  )
+  progressContainer.onclick = function () {
+    mainView.classList.add('hidden')
+    goalView.classList.remove('hidden')
+  }
 
   // -- from Notification to Main View
   const notificationBackBtn = document.getElementById(
