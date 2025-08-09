@@ -5,7 +5,8 @@
   "description": "Reminds you to drink water every 10 minutes during your scheduled time.",
   "permissions": ["storage", "notifications", "alarms"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "action": {
     "default_popup": "popup.html",
