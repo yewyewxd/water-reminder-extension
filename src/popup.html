@@ -131,11 +131,12 @@
               required
               placeholder="Enter amount in mL"
             />
-            <div
+            <label
+              for="water-log-input"
               class="absolute font-medium text-lg right-3 hidden peer-valid:block"
             >
               mL
-            </div>
+            </label>
           </div>
 
           <!-- Log buttons -->
@@ -202,7 +203,11 @@
                 placeholder="Enter value in minutes"
                 type="number"
               />
-              <div class="absolute right-3 hidden peer-valid:block">min</div>
+              <label
+                for="notification-interval-input"
+                class="absolute right-3 hidden peer-valid:block"
+                >min</label
+              >
             </div>
             <span
               id="notification-active-indicator"
@@ -309,7 +314,11 @@
                 placeholder="Enter value in mL"
                 required
               />
-              <div class="absolute right-3 hidden peer-valid:block">mL</div>
+              <label
+                for="daily-water-goal-input"
+                class="absolute right-3 hidden peer-valid:block"
+                >mL</label
+              >
             </div>
           </div>
 
