@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Drink Water Reminder",
-  "version": "1.0",
-  "description": "Reminds you to drink water every 10 minutes during your scheduled time.",
+  "name": "Water Reminder",
+  "version": "0.1.0",
+  "description": "Remind you to drink water and hit your daily hydration goal.",
   "permissions": ["storage", "notifications", "alarms"],
   "background": {
     "service_worker": "background.js",
