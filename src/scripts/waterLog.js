@@ -29,13 +29,27 @@ export default function () {
     streakDayText.innerText = `${streak} day${streak > 1 ? 's' : ''}`
   }
 
-  // -- GET: states
+  // -- GET: states and daily progress reset
   chrome.storage.sync.get(
-    ['dailyGoal', 'dailyTotal', 'streak', 'defaultAmountToLog'],
+    [
+      'dailyGoal',
+      'dailyTotal',
+      'streak',
+      'defaultAmountToLog',
+      'lastResetDate',
+    ],
     (result) => {
+      const todayStart = new Date().setHours(0, 0, 0, 0)
+      const lastResetDate = result.lastResetDate || todayStart
+
+      // If current record is not today's, reset today's progress to 0
+      if (lastResetDate != todayStart) {
+        chrome.storage.sync.set({ lastResetDate: todayStart, dailyTotal: 0 })
+        result.dailyTotal = 0
+      }
+
       const dailyTotal = result.dailyTotal || 0
       const dailyGoal = result.dailyGoal || 3000
-      streak = result.streak || 0
 
       // -- set default streak, water logged, goal
       if (streak > 0) updateStreakText()
