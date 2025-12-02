@@ -5,13 +5,16 @@
   "main": "background.js",
   "scripts": {
     "buildcss:watch": "npx tailwindcss -i ./input.css -o ./src/tailwind.css --watch",
-    "buildcss": "npx tailwindcss -i ./input.css -o ./src/tailwind.css"
+    "buildcss": "npx tailwindcss -i ./input.css -o ./src/tailwind.css",
+    "build": "npm run buildcss && node build.js",
+    "dev": "npm run buildcss:watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "adm-zip": "^0.5.16",
     "tailwindcss": "^3.4.17"
   }
 }
