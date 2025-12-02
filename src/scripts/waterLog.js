@@ -40,7 +40,7 @@ export default function () {
     ],
     (result) => {
       const todayStart = new Date().setHours(0, 0, 0, 0)
-      const lastResetDate = result.lastResetDate || todayStart
+      const lastResetDate = result.lastResetDate
 
       // If current record is not today's, reset today's progress to 0
       if (lastResetDate != todayStart) {
