@@ -44,7 +44,13 @@ export default function () {
 
       // If current record is not today's, reset today's progress to 0
       if (lastResetDate != todayStart) {
-        chrome.storage.sync.set({ lastResetDate: todayStart, dailyTotal: 0 })
+        const resetPayload = { lastResetDate: todayStart, dailyTotal: 0 }
+        // If previous dailyGoal was not hit, reset streak to 0
+        if (result.dailyTotal < (result.dailyGoal || 3000)) {
+          resetPayload.streak = 0
+          result.streak = 0
+        }
+        chrome.storage.sync.set(resetPayload)
         result.dailyTotal = 0
       }
 
