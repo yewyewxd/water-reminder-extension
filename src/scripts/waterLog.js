@@ -29,7 +29,7 @@ export default function () {
     streakDayText.innerText = `${streak} day${streak > 1 ? 's' : ''}`
   }
 
-  // -- GET: states and daily progress reset
+  // -- GET: initialize states and daily progress reset
   chrome.storage.sync.get(
     [
       'dailyGoal',
@@ -50,6 +50,7 @@ export default function () {
 
       const dailyTotal = result.dailyTotal || 0
       const dailyGoal = result.dailyGoal || 3000
+      streak = result.streak
 
       // -- set default streak, water logged, goal
       if (streak > 0) updateStreakText()
